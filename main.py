@@ -37,16 +37,6 @@ def disease_diagnosis():
             return render_template('index.html')
 
 
-# @app.route('/restart_app', methods=['POST'])
-# def restart_app():
-#     print("Restarting App")
-#     output_id_disease = ""
-#     output_disease_details = ""
-#     output_disease_treatments = ""
-#     return render_template('index.html', output_disease=output_id_disease,
-#                            output_details=output_disease_details,
-#                            output_treatments=output_disease_treatments)
-
 def preprocess():
     global diseases_list, diseases_scenarios, diseases_symptoms, symptom_map, d_desc_map, d_treatment_map
     diseases = open("diseases.txt")
@@ -198,8 +188,6 @@ def get_treatments_details(disease):
     return d_treatment_map[disease]
 
 
-# def identify_disease(headache, back_pain, chest_pain, cough, fainting, sore_throat, fatigue, restlessness,
-# low_body_temp ,fever,sunken_eyes):
 class Diagnosis(KnowledgeEngine):
 
     def __init__(self, symptoms=[], id_disease="", disease_details="", treatments=""):
@@ -273,7 +261,7 @@ class Diagnosis(KnowledgeEngine):
     def symptom_14(self):
         self.declare(Fact(sneezing=self.symptoms[9]))
 
-    # Rule combination for COVID 19 diagnosis
+    # Rule combination for COVID 19 and other diseases diagnosis
     @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="yes"), Fact(fever="no"),
           Fact(chest_pain="no"),
           Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
