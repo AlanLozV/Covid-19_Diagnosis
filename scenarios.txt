@@ -1,0 +1,14 @@
+COVID-19 Scenario 1
+COVID-19 Scenario 2
+COVID-19 Scenario 3
+COVID-19 Scenario 4
+COVID-19 Scenario 5
+COVID-19 Scenario 6
+Common Cold Scenario 1
+Common Cold Scenario 2
+Common Cold Scenario 3
+Common Cold Scenario 4
+Common Cold Scenario 5
+Flu
+Allergies Scenario 1
+Allergies Scenario 2

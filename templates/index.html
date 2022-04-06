@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+
+        <style>
+          h1 {
+            margin: auto;
+            position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1%;
+            color: white;
+          }
+          .symptoms {
+            width: 60%;
+            margin: auto;
+            position: relative;
+            color: white;
+          }
+          .button {
+            margin: auto;
+            position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .header {
+            margin: auto;
+            position: center;
+            display: flex;
+            justify-content: center;
+			text-align: center;
+			font-size: 30px;
+			color: white;
+          }
+          .legend {
+            color: white;
+            font-size: 22px;
+          }
+          .content {
+            text-align: left;
+            color: white;
+            font-size: 18px;
+          }
+          .output {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+          }
+          body {
+	        background: #092756;
+	        color: white;
+	        text-align: left;
+	        letter-spacing: 1.2px;
+          }
+
+        </style>
+
+    </head>
+    <body>
+      <div>
+        <h1 class="header">Covid-19 & Other Common Diseases Self-Diagnosis Checklist</h1>
+
+        <form class="symptoms" action="/disease_diagnosis" method="post">
+          <fieldset class="content">
+            <legend class="legend">Please check off all symptoms</legend>
+
+            <div>
+              <input type="checkbox" id="fever" name="match_fever" value="yes">
+              <label for="fever">Fever</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="cough" name="match_cough" value="yes">
+              <label for="cough">Cough</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="fatigue" name="match_fatigue" value="yes">
+              <label for="fatigue">Fatigue</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="loss_taste_smell" name="match_loss_taste_smell" value="yes">
+              <label for="loss_taste_smell">Loss of taste and smell</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="sore_throat" name="match_sore_throat" value="yes">
+              <label for="sore_throat">Sore Throat</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="headache" name="match_headache" value="yes">
+              <label for="headache">Headache</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="aches_pains" name="match_aches_pains" value="yes">
+              <label for="aches_pains">Aches and Pains</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="diarrhea" name="match_diarrhea" value="yes">
+              <label for="diarrhea">Diarrhea</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="chills" name="match_chills" value="yes">
+              <label for="chills">Chills</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="sneeze" name="match_sneeze" value="yes">
+              <label for="sneeze">Sneeze</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="rash" name="match_rash" value="yes">
+              <label for="rash">Rash on skin</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="red_eyes" name="match_red_eyes" value="yes">
+              <label for="red_eyes">Red or irritated eyes</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="difficulty_breathing" name="match_difficulty_breathing" value="yes">
+              <label for="difficulty_breathing">Difficulty breathing or discolouration of fingers and toes</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="loss_speech" name="match_loss_speech" value="yes">
+              <label for="loss_speech">Loss of Speech</label>
+            </div>
+
+            <div>
+              <input type="checkbox" id="chest_pain" name="match_chest_pain" value="yes">
+              <label for="chest_pain">Chest Pain</label>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="button">
+              <button type="submit" style="margin-right: 10px;" value="submit" name="submit">Submit Symptoms</button>
+              <button type="submit" style="margin-right: 10px;" value="restart" name="restart">Restart Diagnosis</button>
+            </div>
+
+          </fieldset>
+        </form>
+
+        <br>
+        <br>
+        {{ output_disease }}
+        <br>
+        <br>
+        {{ output_details }}
+        <br>
+        <br>
+        {{ output_treatments }}
+      </div>
+    </body>
+</html>
