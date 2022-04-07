@@ -137,22 +137,6 @@ def get_symptoms_from_app(request):
         if request.form.get('match_chest_pain'):
             chest_pain_symptom = request.form.get('match_chest_pain')
 
-        print(fever_symptom)
-        print(cough_symptom)
-        print(fatigue_symptom)
-        print(loss_taste_smell_symptom)
-        print(sore_throat_symptom)
-        print(headache_symptom)
-        print(aches_pains_symptom)
-        print(diarrhea_symptom)
-        print(chills_symptom)
-        print(sneeze_symptom)
-        print(rash_symptom)
-        print(red_eyes_symptom)
-        print(difficulty_breathing_symptom)
-        print(loss_speech_symptom)
-        print(chest_pain_symptom)
-
         symptoms_list.append(fever_symptom)
         symptoms_list.append(cough_symptom)
         symptoms_list.append(fatigue_symptom)
@@ -262,131 +246,152 @@ class Diagnosis(KnowledgeEngine):
         self.declare(Fact(sneezing=self.symptoms[9]))
 
     # Rule combination for COVID 19 and other diseases diagnosis
-    @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="yes"), Fact(fever="no"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="no"))
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="yes"), Fact(fever="yes"),
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
     def disease_0(self):
         self.declare(Fact(disease="COVID-19 Scenario 1"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="no"),
-          Fact(chest_pain="yes"),
-          Fact(cough="yes"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="no"))
+          Fact(chest_pain="yes"), Fact(cough="yes"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
     def disease_1(self):
         self.declare(Fact(disease="COVID-19 Scenario 2"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="no"), Fact(fever="no"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="yes"))
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="yes"))
     def disease_2(self):
         self.declare(Fact(disease="Common Cold Scenario 1"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="no"), Fact(fever="yes"),
-          Fact(chest_pain="no"),
-          Fact(cough="yes"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"), Fact(aches_pains="yes"),
-          Fact(diarrhea="no"), Fact(chills="yes"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="yes"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="yes"))
+          Fact(chest_pain="no"), Fact(cough="yes"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="yes"), Fact(diarrhea="no"), Fact(chills="yes"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="yes"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="yes"))
     def disease_3(self):
-        self.declare(Fact(disease="Flu"))
+        self.declare(Fact(disease="Flu Scenario 1"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="no"), Fact(fever="yes"),
-          Fact(chest_pain="no"),
-          Fact(cough="yes"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"), Fact(aches_pains="yes"),
-          Fact(diarrhea="no"), Fact(chills="yes"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="yes"), Fact(breath_difficulty="yes"),
-          Fact(loss_speech="no"), Fact(sneezing="yes"))
+          Fact(chest_pain="no"), Fact(cough="yes"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="yes"), Fact(diarrhea="no"), Fact(chills="yes"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="yes"), Fact(breath_difficulty="yes"), Fact(loss_speech="no"), Fact(sneezing="yes"))
     def disease_4(self):
         self.declare(Fact(disease="COVID-19 Scenario 3"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="yes"), Fact(fever="no"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="no"))
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
     def disease_5(self):
         self.declare(Fact(disease="Common Cold Scenario 2"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="yes"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="no"))
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
     def disease_6(self):
         self.declare(Fact(disease="Common Cold Scenario 3"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="no"),
-          Fact(chest_pain="yes"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="no"))
+          Fact(chest_pain="yes"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
     def disease_7(self):
         self.declare(Fact(disease="COVID-19 Scenario 4"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="yes"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="yes"),
-          Fact(loss_speech="yes"), Fact(sneezing="no"))
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="yes"), Fact(loss_speech="yes"), Fact(sneezing="no"))
     def disease_8(self):
         self.declare(Fact(disease="COVID-19 Scenario 5"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="no"), Fact(fever="yes"),
-          Fact(chest_pain="no"),
-          Fact(cough="yes"), Fact(fatigue="no"), Fact(loss_taste_smell="yes"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="no"))
+          Fact(chest_pain="no"), Fact(cough="yes"), Fact(fatigue="no"), Fact(loss_taste_smell="yes"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
     def disease_9(self):
         self.declare(Fact(disease="COVID-19 Scenario 6"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="yes"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="yes"), Fact(irritated_eyes="yes"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="no"))
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="yes"),
+          Fact(irritated_eyes="yes"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
     def disease_10(self):
         self.declare(Fact(disease="Allergies Scenario 1"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="yes"), Fact(fever="no"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="yes"))
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="yes"))
     def disease_11(self):
         self.declare(Fact(disease="Common Cold Scenario 4"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="yes"),
-          Fact(chest_pain="no"),
-          Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="yes"))
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="yes"))
     def disease_12(self):
         self.declare(Fact(disease="Common Cold Scenario 5"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="yes"), Fact(fever="no"),
-          Fact(chest_pain="no"),
-          Fact(cough="yes"), Fact(fatigue="no"), Fact(loss_taste_smell="no"), Fact(aches_pains="no"),
-          Fact(diarrhea="no"), Fact(chills="no"),
-          Fact(rash_discoloration_skin="no"), Fact(irritated_eyes="no"), Fact(breath_difficulty="no"),
-          Fact(loss_speech="no"), Fact(sneezing="yes"))
+          Fact(chest_pain="no"), Fact(cough="yes"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="yes"))
     def disease_13(self):
         self.declare(Fact(disease="Allergies Scenario 2"))
+
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="no"),
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="yes"), Fact(chills="yes"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
+    def disease_14(self):
+        self.declare(Fact(disease="Flu Scenario 2"))
+
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="yes"), Fact(fever="no"),
+          Fact(chest_pain="yes"), Fact(cough="yes"), Fact(fatigue="yes"), Fact(loss_taste_smell="yes"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
+    def disease_15(self):
+        self.declare(Fact(disease="COVID-19 Scenario 7"))
+
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="yes"), Fact(fever="yes"),
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="yes"))
+    def disease_16(self):
+        self.declare(Fact(disease="Common Cold Scenario 6"))
+
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="yes"), Fact(sore_throat="no"), Fact(fever="yes"),
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="yes"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
+    def disease_17(self):
+        self.declare(Fact(disease="Flu Scenario 3"))
+
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="yes"), Fact(fever="yes"),
+          Fact(chest_pain="no"), Fact(cough="yes"), Fact(fatigue="yes"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
+    def disease_18(self):
+        self.declare(Fact(disease="COVID-19 Scenario 8"))
+
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="no"),
+          Fact(chest_pain="no"), Fact(cough="yes"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="yes"),
+          Fact(irritated_eyes="yes"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="yes"))
+    def disease_19(self):
+        self.declare(Fact(disease="Allergies Scenario 3"))
+
+    @Rule(Fact(action='find_diagnosis'), Fact(headache="no"), Fact(sore_throat="no"), Fact(fever="no"),
+          Fact(chest_pain="no"), Fact(cough="no"), Fact(fatigue="no"), Fact(loss_taste_smell="no"),
+          Fact(aches_pains="no"), Fact(diarrhea="no"), Fact(chills="no"), Fact(rash_discoloration_skin="no"),
+          Fact(irritated_eyes="no"), Fact(breath_difficulty="no"), Fact(loss_speech="no"), Fact(sneezing="no"))
+    def disease_20(self):
+        self.declare(Fact(disease="No disease"))
 
     @Rule(Fact(action='find_diagnosis'), Fact(disease=MATCH.disease), salience=-998)
     def disease(self, disease):
@@ -400,9 +405,11 @@ class Diagnosis(KnowledgeEngine):
         elif "Flu" in disease:
             self.id_disease = "Flu"
             print(self.id_disease)
-        else:
+        elif "Allergies" in disease:
             self.id_disease = "Allergies"
             print(self.id_disease)
+        else:
+            self.id_disease = "No disease"
 
         self.disease_details = get_details(self.id_disease)
         self.treatments = get_treatments_details(self.id_disease)
@@ -442,6 +449,7 @@ class Diagnosis(KnowledgeEngine):
             if count > max_count:
                 max_count = count
                 max_disease = val
+
         if "COVID-19" in max_disease:
             self.id_disease = "COVID-19"
             print(self.id_disease)

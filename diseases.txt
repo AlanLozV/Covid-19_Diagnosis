@@ -2,3 +2,4 @@ COVID-19
 Common Cold
 Flu
 Allergies
+No disease
